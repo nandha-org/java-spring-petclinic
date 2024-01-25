@@ -32,6 +32,9 @@ Fork this repo and open the sample app code in VS Code to get started.
 
 ## Create an Azure App Service
 
+> [!NOTE]
+> For Spring applications, we recommend using Azure Spring Apps. However, you can still use Azure App Service as a destination.
+
 Create a web app hosted in Azure with a unique name, **Linux** as the OS and **Java 8** as the runtime and Tomcat 9 enabled . 
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-java-tomcat%2Fazuredeploy.json" target="_blank">
