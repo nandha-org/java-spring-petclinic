@@ -8,7 +8,6 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: java-nandha    # application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'    # path to your web app project
   JAVA_VERSION: '1.8'               # node version 
 
 jobs:
@@ -21,6 +20,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'temurin'
     - name: Build with Maven
       run: mvn package --file pom.xml
     - name: 'Deploy to Azure WebApp'
@@ -28,6 +28,6 @@ jobs:
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        package: 'target/*.jar'
         
         
