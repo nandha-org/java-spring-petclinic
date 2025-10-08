@@ -1,20 +1,16 @@
 name: Deploy Java app to Azure Web App
 
 on:
-  [push]
+  push:
+    branches: 
+     - master
+  workflow_dispatch:
 
-# CONFIGURATION
-# For help, go to https://github.com/Azure/Actions
-#
-# 1. Set up the following secrets in your repository:
-#   AZURE_WEBAPP_PUBLISH_PROFILE
-#
-# 2. Change these variables for your configuration:
 env:
-  AZURE_WEBAPP_NAME: JavaSpringPetclinic  # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: ${{ github.workspace }} # set this to the path to your web app project
-  JAVA_VERSION: '1.8'                # set this to the node version to use
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}     # set GH repo secret with the publish profile of the web app
+  AZURE_WEBAPP_NAME: java-nandha    # application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'    # path to your web app project
+  JAVA_VERSION: '1.8'               # node version
+  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.PUBLISH_PROFILE }} 
 
 jobs:
   build-and-deploy:
@@ -33,7 +29,5 @@ jobs:
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/target/*.jar'
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         
-  # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
-  # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
